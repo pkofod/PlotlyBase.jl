@@ -16,30 +16,27 @@ function sizes(nr::Int, nc::Int, subplot_titles::Bool=false)
 end
 
 function gen_layout(nr, nc, subplot_titles::Bool=false)
-    w, h, dy, dx = sizes(nr, nc, subplot_titles)
+    # w, h, dy, dx = sizes(nr, nc, subplot_titles)
 
-    x = 0.0  # start from left
-    y = 1.0  # start from top
+    # x = 0.0  # start from left
+    # y = 1.0  # start from top
+    out = Layout(grid=(rows=nr, columns=nc, pattern="independent"))
+    # for col in 1:nc
 
-    out = Layout()
-    for col in 1:nc
+    #     y = 1.0 # reset y as we start a new col
+    #     for row in 1:nr
+    #         subplot = LinearIndices((nc, nr))[col, row]
+    #         out["xaxis$subplot"] = Dict{Any,Any}(:domain=>[x, x+w],
+    #                                              :anchor=> "y$subplot")
+    #         out["yaxis$subplot"] = Dict{Any,Any}(:domain=>[y-h, y],
+    #                                              :anchor=> "x$subplot")
 
-        y = 1.0 # reset y as we start a new col
-        for row in 1:nr
-            subplot = LinearIndices((nc, nr))[col, row]
+    #         y -= nr == 1 ? 0.0 : h + dy
+    #      end
 
-            out["xaxis$subplot"] = Dict{Any,Any}(:domain=>[x, x+w],
-                                                 :anchor=> "y$subplot")
-            out["yaxis$subplot"] = Dict{Any,Any}(:domain=>[y-h, y],
-                                                 :anchor=> "x$subplot")
-
-            y -= nr == 1 ? 0.0 : h + dy
-         end
-
-         x += nc == 1 ? 0.0 : w + dx
-    end
-
-    out
+    #      x += nc == 1 ? 0.0 : w + dx
+    # end
+    # out
 
 end
 
